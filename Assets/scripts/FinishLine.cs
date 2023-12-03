@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FinishLine : MonoBehaviour
 {
-    public Text finishText; // Reference to the UI Text.
+    public Text finishText; // De UI Text.
 
     // triggered als de player de finish line aanraakt
     private void OnTriggerEnter2D(Collider2D other)
@@ -17,6 +17,7 @@ public class FinishLine : MonoBehaviour
         }
     }
 
+    // game pauze zetten functie
     private void PauseGame()
     {
         Time.timeScale = 0f; // Set time to pause game

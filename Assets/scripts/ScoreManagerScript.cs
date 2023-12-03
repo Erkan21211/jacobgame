@@ -3,21 +3,21 @@ using UnityEngine.UI;
 
 public class ScoreManagerScript : MonoBehaviour
 {
-    public Text scoreText; // the UI text element for displaying the score.
-    private int score = 0; // Variable to store the score.
+    public Text scoreText; // text element voor het laten zien van de score.
+    private int score = 0; // Variable van de score
 
     private void Start()
     {
-        UpdateScoreText(); // Call this function to update the score text initially.
+        UpdateScoreText(); // roept andere functie aan om de score te updaten van het begin van de level start.
     }
 
-    // Function to update the score text on the UI.
+    // Functie score updaten
     void UpdateScoreText()
     {
         scoreText.text = "Score: " + score;
     }
 
-    // Function to handle coin collection.
+    // Munt toevoegen aan score
     public void CollectCoin()
     {
         score++; // Increase the score by 1.

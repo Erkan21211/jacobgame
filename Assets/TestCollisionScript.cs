@@ -6,18 +6,8 @@ public class TestCollisionScript : MonoBehaviour
 {
 
     public ZombieScript zombieScript;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
+    // kill zombie als die wordt geraakt door de bullet
     public void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("geraakt");

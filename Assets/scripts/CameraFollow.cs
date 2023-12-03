@@ -5,9 +5,11 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
 
-    public Transform target; // The player's Transform to follow
-    public float smoothSpeed = 0.125f; // The smoothness of the camera movement
+    public Transform target; // Camera transform instelling om player te volgen
+    public float smoothSpeed = 0.125f; // smoothness snelheid
 
+
+    // elke frame checken of target niet NULL is, en de positie updaten als de player moved.
     void LateUpdate()
     {
         if (target != null)

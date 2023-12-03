@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // basics
+    // snellheid van player, spring kracht, ground detection.
     public float moveSpeed = 5f;
     public float jumpForce = 8f;
     private bool isGrounded = false;
     private Rigidbody2D rb;
 
-    public LayerMask groundLayer; // the Ground layer.
+    public LayerMask groundLayer; // De Ground layer.
 
-    // shooting
+    // kogel variables
     public GameObject bulletPrefab;
     public Transform firePoint;
     public float bulletSpeed = 10f;
@@ -24,17 +24,17 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // Movement
+        // Movement / beweging van player
         float moveDirection = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveDirection * moveSpeed, rb.velocity.y);
 
-        // Jumping by space
+        // Jumping by space / springen via knop spatie 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
-        // shoot by left click
+        // shoot by left click / schieten via knop 'x'
         if (Input.GetKeyDown(KeyCode.X)) // x click triggers shooting.
         {
             Shoot();
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // shoot function
+    // Schiet functie
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
@@ -52,18 +52,19 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(DestroyBulletAfterTime(bullet, 1f));
     }
 
+    // laat kogel verwijderen na paar secondes.
     IEnumerator DestroyBulletAfterTime(GameObject bullet, float time)
     {
         yield return new WaitForSeconds(time);
 
-        // Check if the bullet is not null before attempting to destroy it
+        // kijken of kogel niet null is voordat we de kogel verwijderen.
         if (bullet != null)
         {
             Destroy(bullet);
         }
     }
 
-    // ground deaction
+    // ground detection
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
@@ -80,7 +81,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // pickup coins and remove afterwards
+    // Munten oppakken en verwijderen na het oppakken.
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Coin"))
@@ -88,7 +89,7 @@ public class PlayerController : MonoBehaviour
             ScoreManagerScript scoreManager = FindObjectOfType<ScoreManagerScript>(); // Find the ScoreManager in the scene.
             if (scoreManager != null)
             {
-                scoreManager.CollectCoin(); // Call the CollectCoin function in the ScoreManager.
+                scoreManager.CollectCoin(); // roep de functie in aan in andere bestand om munten te geven aan de player
             }
 
             Destroy(other.gameObject); // Destroy the collected coin GameObject.
