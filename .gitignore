@@ -1,0 +1,15 @@
+# Ignore the Library directory and its contents
+Library/
+
+# Ignore generated files
+*.sln
+*.csproj
+*.userprefs
+
+# Ignore Unity generated files
+/Temp/
+/Obj/
+/Build/
+
+# Ignore specific large files or directories
+com.unity.burst@1.6.6/
